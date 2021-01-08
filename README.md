@@ -4,4 +4,4 @@ WeSplit is a check-splitting app designed to make it easier for groups of people
 
 I'm building this app purely for educational purposes for an introduction to SwiftUI as part of Paul Hudson's 100 Days of Swift.
 
-* Wish me luck *
+* Wish me luck
