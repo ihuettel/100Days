@@ -59,8 +59,9 @@ struct ContentView: View {
                     Text("$\(total.perPerson, specifier: "%.2f")")
                 }
                 
-                Section(header: Text("Total with tip")) {
+                Section(header: Text("Total with tip"), footer: Text(tipPercentage == 4 ? "No tip selected." : "").foregroundColor(.red)) {
                     Text("$\(total.allTogether, specifier: "%.2f")")
+                        .foregroundColor(tipPercentage == 4 ? .red : .primary)
                 }
             }
             .navigationBarTitle("WeSplit")
