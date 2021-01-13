@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+struct ScoreText: View {
+    var text: String
+    
+    var body: some View {
+        Text(text)
+            .foregroundColor(.white)
+            .font(.title2)
+            .fontWeight(.bold)
+    }
+}
+
 struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Monaco", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -26,14 +37,11 @@ struct ContentView: View {
             
             VStack(spacing: 30) {
                 VStack {
-                    Text("Tap the flag of")
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .fontWeight(.bold)
+                    ScoreText(text: "Tap the flag of")
                     Text(countries[correctAnswer])
-                        .foregroundColor(.white)
                         .font(.largeTitle)
                         .fontWeight(.black)
+                        .foregroundColor(.white)
                 }
                 
                 ForEach(0 ..< 3) { number in
@@ -52,20 +60,11 @@ struct ContentView: View {
                 Spacer()
                 
                 VStack(spacing: 10) {
-                    Text("Total correct answers: \(score)")
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    Text("Longest Streak: \(longestStreak)")
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    Text("Current Streak: \(streak)")
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .fontWeight(.bold)
+                    ScoreText(text: "Total correct answers: \(score)")
+                    ScoreText(text: "Longest Streak: \(longestStreak)")
+                    ScoreText(text: "Current Streak: \(streak)")
                 }
-
+                
             }
         }
         .alert(isPresented: $showingScore) {
