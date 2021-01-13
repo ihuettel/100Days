@@ -11,4 +11,5 @@ Projects in order:
 * WeSplit: helps to split a check between multiple people
 * WeConvert: converts units of measure to other units of measure
 * GuessTheFlag: a flag guessing game for various countries of the world
+* ViewsAndModifiers: a technique project focused on Views and View Modifiers
 * More to come...
