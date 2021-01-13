@@ -2,7 +2,11 @@
 //  ContentView.swift
 //  Guess The Flag
 //
-//  Created by homebase on 1/10/21.
+//  Created by ihuettel on 1/10/21.
+//
+//  It is my intention to come back and add additional code comments to this project
+//  and potentially build some testing into this app.
+//  This all relies on me finding the time to do such things.
 //
 
 import SwiftUI
