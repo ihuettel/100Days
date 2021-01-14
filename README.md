@@ -1,4 +1,4 @@
-# 100 Days of Swift
+# 100 Days of SwiftUI
 
 This is where I will be hosting all my projects from 100 Days of Swift.
 
