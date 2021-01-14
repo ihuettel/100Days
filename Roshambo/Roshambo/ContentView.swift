@@ -31,7 +31,7 @@ struct StyledButton: View {
             .frame(width: 100, height: 100, alignment: .center)
             .background(color)
             .clipShape(RoundedRectangle(cornerRadius: 15))
-            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 2))
+            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 1))
     }
 }
 
@@ -98,6 +98,7 @@ struct ContentView: View {
                 Spacer()
                 VStack(spacing: 15) {
                     Text("You must \(shouldWin ? "win" : "lose").")
+                        .accessibility(identifier: "shouldWin")
                     Text("Your opponent chooses..")
                     Text(moves[currentMove])
                         .fontWeight(.bold)
@@ -106,11 +107,13 @@ struct ContentView: View {
                         .background(Color(white: 0.85))
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.gray, lineWidth: 1))
+                        .accessibility(identifier: "opponentsMove")
                 }
                 
                 Spacer()
                 
                 Text("Correct Answers: \(score) | Total Answers: \(questionsAnswered)")
+                    .accessibility(identifier: "scoreText")
                     .frame(maxWidth: .infinity, alignment: .center)
                 
                 VStack(spacing: 15) {

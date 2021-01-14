@@ -2,7 +2,7 @@
 //  RoshamboApp.swift
 //  Roshambo
 //
-//  Created by homebase on 1/13/21.
+//  Created by ihuettel on 1/13/21.
 //
 
 import SwiftUI

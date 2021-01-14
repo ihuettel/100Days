@@ -2,7 +2,7 @@
 //  RoshamboUITests.swift
 //  RoshamboUITests
 //
-//  Created by homebase on 1/13/21.
+//  Created by ihuettel on 1/13/21.
 //
 
 import XCTest
@@ -22,13 +22,67 @@ class RoshamboUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testAllMoves() throws {
         let app = XCUIApplication()
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        for move in ["Rock", "Paper", "Scissors"] {
+            app.buttons[move].tap()
+            app.alerts.buttons["Continue"].tap()
+        }
+    }
+    
+    func testPerfectGame() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        for _ in 0 ..< 10 {
+            let shouldWinText = app.staticTexts["shouldWin"].label
+            let opponentsMove = app.staticTexts["opponentsMove"].label
+            
+            var correctMove: String {
+                if shouldWinText == "You must win." {
+                    switch opponentsMove {
+                    case "Rock":
+                        return "Paper"
+                    case "Paper":
+                        return "Scissors"
+                    case "Scissors":
+                        return "Rock"
+                    default:
+                        return "Dynamite"
+                    }
+                } else {
+                    switch opponentsMove {
+                    case "Rock":
+                        return "Scissors"
+                    case "Paper":
+                        return "Rock"
+                    case "Scissors":
+                        return "Paper"
+                    default:
+                        return "Dynamite"
+                    }
+                }
+            }
+            
+            XCTAssertNotEqual(opponentsMove, "Dynamite", "Your opponent wound up with Dynamite, somehow.")
+            XCTAssertNotEqual(correctMove, "Dynamite", "You wound up with Dynamite, somehow.")
+            
+            app.buttons[correctMove].tap()
+            
+            let alert: XCUIElement = app.alerts["Correct!"]
+            XCTAssertTrue(alert.exists, "Wrong answer in an otherwise perfect game.")
+            app.alerts.buttons["Continue"].tap()
+        }
+        //let scoreText = app.staticTexts["scoreText"].label
+        //XCTAssertEqual(scoreText, "Correct Answers: 10 | Total Answers: 10", "Didn't end 10/10.")
+        //
+        //  This code won't work until I implement a "Restart Game" button instead of automatically resetting it
+        //  I could also change the way the game functions to make it work, but that's not what I want.
+        //  I hope to revisit this at some point, but this was my first foray into testing, and I feel
+        //  that I've learned quite a bit already. #staticTextNotTextView
+        //
     }
 
     func testLaunchPerformance() throws {
