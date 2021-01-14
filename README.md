@@ -12,4 +12,5 @@ Projects in order:
 * WeConvert: converts units of measure to other units of measure
 * GuessTheFlag: a flag guessing game for various countries of the world
 * ViewsAndModifiers: a technique project focused on Views and View Modifiers
+* Roshambo: a slightly brain-teasing version of Rock-Paper-Scissors
 * More to come...
