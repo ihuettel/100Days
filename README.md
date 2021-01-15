@@ -8,10 +8,10 @@ I've never really done much with Git/Github before, so we'll see how much troubl
 Fun times!
 
 Projects in order:
-* WeSplit: helps to split a check between multiple people
-* WeConvert: converts units of measure to other units of measure
-* GuessTheFlag: a flag guessing game for various countries of the world
-* ViewsAndModifiers: a technique project focused on Views and View Modifiers
-* Roshambo: a slightly brain-teasing version of Rock-Paper-Scissors
-* BetterRest: advises coffee drinks on an ideal sleep time
+* [WeSplit](https://github.com/ihuettel/100Days/tree/master/WeSplit): helps to split a check between multiple people
+* [WeConvert](https://github.com/ihuettel/100Days/tree/master/WeConvert): converts units of measure to other units of measure
+* [GuessTheFlag](https://github.com/ihuettel/100Days/tree/master/GuessTheFlag): a flag guessing game for various countries of the world
+* [ViewsAndModifier](https://github.com/ihuettel/100Days/tree/master/ViewsAndModifiers): a technique project focused on Views and View Modifiers
+* [Roshambo](https://github.com/ihuettel/100Days/tree/master/Roshambo): a slightly brain-teasing version of Rock-Paper-Scissors
+* [BetterRest](https://github.com/ihuettel/100Days/tree/master/BetterRest): advises coffee drinks on an ideal sleep time
 * More to come...
