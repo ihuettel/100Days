@@ -37,21 +37,21 @@ class BetterRestUITests: XCTestCase {
         XCTAssertEqual(app.staticTexts["hours"].label, "4 hours", "Error decrementing Hours stepper down to 4.")
     }
     
-    func testCoffeeIncrement() throws {
-        let incrementButton = app.otherElements["coffee"].coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5))
-        for _ in 0 ... 10 {
-            incrementButton.doubleTap()
-        }
-        XCTAssertEqual(app.staticTexts["20 cups of coffee"].label, "20 cups of coffee", "Error incrementing Coffee stepper up to 20.")
-    }
+    //func testCoffeeIncrement() throws {
+    //    let incrementButton = app.otherElements["coffee"].coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5))
+    //    for _ in 0 ... 10 {
+    //        incrementButton.doubleTap()
+    //    }
+    //    XCTAssertEqual(app.staticTexts["coffee"].label, "20 cups of coffee", "Error incrementing Coffee stepper up to 20.")
+    //}
 
-    func testCoffeeDecrement() throws {
-        let decrementButton = app.otherElements["coffee"].coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.5))
-        for _ in 0 ... 10 {
-            decrementButton.doubleTap()
-        }
-        XCTAssertEqual(app.staticTexts["0 cups of coffee"].label, "0 cups of coffee", "Error decrementing Coffee stepper down to 0.")
-    }
+    //func testCoffeeDecrement() throws {
+    //    let decrementButton = app.otherElements["coffee"].coordinate(withNormalizedOffset: CGVector(dx: 0.1, dy: 0.5))
+    //    for _ in 0 ... 10 {
+    //        decrementButton.doubleTap()
+    //    }
+    //    XCTAssertEqual(app.staticTexts["coffee"].label, "0 cups of coffee", "Error decrementing Coffee stepper down to 0.")
+    //}
     
     //
     //  Both testCoffee[...] tests above used to use app.staticTexts["coffee"] until the identifier broke while messing with the UI.
@@ -63,6 +63,11 @@ class BetterRestUITests: XCTestCase {
     //  I'm honestly surprised how well the coordinate workaround functions. Shoutout to Rob Sturgeon for his article on Medium.
     //  [https://medium.com/twinkl-educational-publishers/accessible-swiftui-for-easy-ui-testing-f2e7b8824b39]
     //  Really helped me fix a lot of basic little things in my UI Tests that weren't working or were inefficient.
+    //
+    //  Update: I got the stepper working by deleting the stepper and rebuilding it. I used a ternary operator this time instead of if/else
+    //  which may have made the difference. In either case, that code is no longer in "production" as a challenge has me replacing it
+    //  with a picker instead. I've chosen a wheelpicker because it fills the blank space on the screen nicely enough.
+    //  At least I got it done for my satisfaction. I'll leave the code in, commented out, incase anyone is curious. (Like me.)
     //
 
 }

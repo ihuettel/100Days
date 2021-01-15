@@ -20,81 +20,77 @@ struct ContentView: View {
     @State private var hoursOfSleep = 8.0
     @State private var cupsOfCoffee = 1
     
-    @State private var alertTitle = ""
-    @State private var alertMessage = ""
-    @State private var alertShowing = false
-    
-    
-    func calculateBedtime() {
+    func calculateBedtime() -> String {
         
         let model = SleepCalculator()
-        let components = Calendar.current.dateComponents([.hour, .minute], from: wakeupTime)
+        var components = Calendar.current.dateComponents([.hour, .minute], from: wakeupTime)
         let hours = (components.hour ?? 0) * 60 * 60
         let minutes = (components.minute ?? 0) * 60
+        let sleepTime: Date
         
         do {
             let prediction = try model.prediction(wake: Double(hours + minutes), estimatedSleep: hoursOfSleep, coffee: Double(cupsOfCoffee))
-            let sleepTime = wakeupTime - prediction.actualSleep
-            let formatter = DateFormatter()
-            
-            formatter.timeStyle = .short
-            alertTitle = "Your ideal bedtime is..."
-            alertMessage = formatter.string(from: sleepTime)
+            sleepTime = wakeupTime - prediction.actualSleep
         } catch {
-            alertTitle = "Error"
-            alertMessage = "Unknown error occured while getting your bedtime."
+            components.hour = (components.hour ?? 7) - Int(hoursOfSleep)
+            sleepTime = Calendar.current.date(from: components) ?? Date()
         }
         
-        alertShowing = true
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        
+        return formatter.string(from: sleepTime)
     }
     
     var body: some View {
         NavigationView {
             Form {
-                VStack(alignment: .leading, spacing: 0) {
-                    
-                    Text("What time do you want to wake up?")
-                        .font(.headline)
+                Section(header: Text("What time do you want to wake up?")) {
                     
                     DatePicker("Please choose a wakeup time.", selection: $wakeupTime, displayedComponents: .hourAndMinute)
                         .labelsHidden()
                         .datePickerStyle(WheelDatePickerStyle())
                 }
                 
-                VStack(alignment: .leading, spacing: 10) {
-                    
-                    Text("How long do you want to sleep for?")
-                        .font(.headline)
+                Section(header: Text("How long do you want to sleep for?")) {
                     
                     Stepper(value: $hoursOfSleep, in: 4 ... 12, step: 0.25) {
                         Text("\(hoursOfSleep, specifier: "%g") hours")
                     }
-                        .accessibilityIdentifier("hours")
+                    .accessibilityIdentifier("hours")
                 }
                 
-                VStack(alignment: .leading, spacing: 10) {
-                    
-                    Text("How much coffee will you be drinking?")
-                        .font(.headline)
-                    
-                    Stepper(value: $cupsOfCoffee, in: 0 ... 20) {
-                        if cupsOfCoffee == 1 {
-                            Text("1 cup of coffee")
-                        } else {
-                            Text("\(cupsOfCoffee) cups of coffee")
+                Section(header: Text("How many cups of coffee will you be having?")) {
+                    Picker("How many cups of coffee will you be having?", selection: $cupsOfCoffee) {
+                        ForEach(0 ..< 21) {
+                            Text("\($0) \($0 == 1 ? "cup" : "cups")")
                         }
                     }
+                    .labelsHidden()
+                    .pickerStyle(DefaultPickerStyle())
                     .accessibilityIdentifier("coffee")
                 }
-                .navigationBarTitle("Better Rest")
-                .navigationBarItems(trailing: Button("Calculate", action: calculateBedtime))
+                
+                Section(header: Text("Your ideal bedtime time")) {
+                    Text("\(calculateBedtime())")
+                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                }
+//
+//  I'm leaving this code in as per a comment left in the tests.
+//  This was my solution to fixing the accessibilityIndentifier not being read.
+//  ..I don't know exactly why it worked, but I'd put money on the ternary operator
+//  letting me use a single text field as opposed to writing 2 text fields and using
+//  a conditional block to determine which gets used.
+//
+//  All of this has been replaced by the picker implemented above as part of a challenge.
+                
+//                    Stepper(value: $cupsOfCoffee, in: 0 ... 20) {
+//                        Text("\(cupsOfCoffee) \(cupsOfCoffee == 1 ? "cup" : "cups") of coffee")
+//                    }
+//                        .accessibilityIdentifier("coffee")
+//
             }
-            .alert(isPresented: $alertShowing) {
-                Alert(title: Text(alertTitle),
-                      message: Text(alertMessage),
-                      dismissButton: .default(Text("Dismiss"))
-                )
-            }
+            .navigationBarTitle("Better Rest")
         }
     }
 }
