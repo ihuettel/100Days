@@ -13,4 +13,5 @@ Projects in order:
 * GuessTheFlag: a flag guessing game for various countries of the world
 * ViewsAndModifiers: a technique project focused on Views and View Modifiers
 * Roshambo: a slightly brain-teasing version of Rock-Paper-Scissors
+* BetterRest: advises coffee drinks on an ideal sleep time
 * More to come...
