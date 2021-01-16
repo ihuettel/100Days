@@ -14,4 +14,5 @@ Projects in order:
 * [ViewsAndModifier](https://github.com/ihuettel/100Days/tree/master/ViewsAndModifiers): a technique project focused on Views and View Modifiers
 * [Roshambo](https://github.com/ihuettel/100Days/tree/master/Roshambo): a slightly brain-teasing version of Rock-Paper-Scissors
 * [BetterRest](https://github.com/ihuettel/100Days/tree/master/BetterRest): advises coffee drinks on an ideal sleep time
+* [WordScramble](https://github.com/ihuettel/100Days/tree/master/WordScramble): a game for anagram lovers
 * More to come...
