@@ -31,6 +31,7 @@ struct FlagImage: View {
             .clipShape(Capsule())
             .overlay(Capsule().stroke(Color.black, lineWidth: 1))
             .shadow(color: .black, radius: 2)
+            .transition(.opacity)
     }
 }
 
@@ -44,9 +45,13 @@ struct ContentView: View {
     @State private var streak = 0
     @State private var longestStreak = 0
     
+    @State private var rotationAmount = 0.0
+    @State private var flagOpacitiy = 1.0
+    @State private var backgroundRed = false
+    
     var body: some View {
         ZStack {
-            Color.blue.edgesIgnoringSafeArea(.all)
+            (backgroundRed ? Color.red : Color.blue).edgesIgnoringSafeArea(.all)
             LinearGradient(gradient: Gradient(colors: [.white, .white, .white, .gray, .black]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
                 .opacity(0.4)
@@ -62,10 +67,20 @@ struct ContentView: View {
                 
                 ForEach(0 ..< 3) { number in
                     Button(action: {
+                        withAnimation(.easeOut) {
+                            if number == correctAnswer {
+                                self.rotationAmount += 360
+                            } else {
+                                self.backgroundRed = true
+                            }
+                            self.flagOpacitiy = 0.25
+                        }
                         self.flagTapped(number)
                     }) {
                         FlagImage(country: self.countries[number])
                     }
+                    .opacity(number == correctAnswer ? 1 : flagOpacitiy)
+                    .rotation3DEffect(.degrees(rotationAmount), axis: (x:  (number == correctAnswer ? -1 : 0), y: 0, z: 0))
                 }
                 
                 Spacer()
@@ -80,7 +95,8 @@ struct ContentView: View {
         }
         .alert(isPresented: $showingScore) {
             Alert(title: Text(scoreTitle),
-                  message: Text("Your score is \(score)."), dismissButton: .default(Text("Continue")) { self.askQuestion()
+                  message: Text("Your score is \(score)."), dismissButton: .default(Text("Continue")) {
+                    self.askQuestion()
                   })
         }
     }
@@ -106,6 +122,10 @@ struct ContentView: View {
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        withAnimation(.easeOut(duration: 0.25)) {
+            backgroundRed = false
+            flagOpacitiy = 1
+        }
     }
 }
 
