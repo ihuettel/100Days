@@ -15,4 +15,5 @@ Projects in order:
 * [Roshambo](https://github.com/ihuettel/100Days/tree/master/Roshambo): a slightly brain-teasing version of Rock-Paper-Scissors
 * [BetterRest](https://github.com/ihuettel/100Days/tree/master/BetterRest): advises coffee drinks on an ideal sleep time
 * [WordScramble](https://github.com/ihuettel/100Days/tree/master/WordScramble): a game for anagram lovers
+* [Animations](https://github.com/ihuettel/100Days/tree/master/Animations): a technique project on Animations in SwiftUI
 * More to come...
