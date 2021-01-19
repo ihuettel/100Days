@@ -18,7 +18,7 @@ struct ScoreText: View {
         Text(text)
             .foregroundColor(.white)
             .font(.title2)
-            .fontWeight(.bold)
+            .fontWeight(.black) // This change was made to make me resolve a conflict.
     }
 }
 
