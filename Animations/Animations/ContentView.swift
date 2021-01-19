@@ -9,14 +9,6 @@
 //  I'll be honest, animations are not my strong suit, so this was an
 //  adventure, however it's been fun.
 //
-//  Currently, I have an issue where the draggable card, which I decided
-//  to make disappear and reappear using the second Tap Me! button doesn't
-//  animate on when it appears but does when it disappears. I can make it
-//  do the inverse, but making it do both is giving me some trouble.
-//  I have some ideas as to what could be causing it, but as it stands,
-//  I would want to tinker around with it more, and I don't have the time
-//  at this moment! (So, it will stay as is until I revisit this project.)
-//
 //  At the end of the day, this is a technique project, and therefore is
 //  more of a playground than an app with any level of polish.
 //
@@ -72,6 +64,7 @@ struct ContentView: View {
             .foregroundColor(.white)
             .clipShape(Circle())
             .scaleEffect(animationAmount)
+            
             Spacer()
             
             
@@ -88,7 +81,10 @@ struct ContentView: View {
                     )
                     .offset(cardDrag)
                     .gesture(DragGesture()
-                                .onChanged { self.cardDrag = $0.translation }
+                                .onChanged {
+                                    self.cardDrag = $0.translation
+                                    
+                                }
                                 .onEnded { _ in
                                     withAnimation {
                                         self.cardDrag = .zero
@@ -96,14 +92,15 @@ struct ContentView: View {
                                 }
                     )
 //                    .animation(.spring()) // This animates the whole gesture instead of just the onEnded animation
-                    
-                    .transition(.pivot)
-                Spacer()
             }
+            
+            Spacer()
             
             Button("Tap me!") {
                 withAnimation(.easeInOut(duration: 0.5)) {
                     self.showingCard.toggle()
+                }
+                withAnimation(.easeInOut(duration: 0.5)) {
                     self.secondAnimation += 360
                 }
             }
