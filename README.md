@@ -16,4 +16,5 @@ Projects in order:
 * [BetterRest](https://github.com/ihuettel/100Days/tree/master/BetterRest): advises coffee drinks on an ideal sleep time
 * [WordScramble](https://github.com/ihuettel/100Days/tree/master/WordScramble): a game for anagram lovers
 * [Animations](https://github.com/ihuettel/100Days/tree/master/Animations): a technique project on Animations in SwiftUI
+* [ProductFarms](https://github.com/ihuettel/100Days/tree/master/ProductFarms): multiplication-tables a game, farm style
 * More to come...
