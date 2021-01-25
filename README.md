@@ -17,4 +17,5 @@ Projects in order:
 * [WordScramble](https://github.com/ihuettel/100Days/tree/master/WordScramble): a game for anagram lovers
 * [Animations](https://github.com/ihuettel/100Days/tree/master/Animations): a technique project on Animations in SwiftUI
 * [ProductFarms](https://github.com/ihuettel/100Days/tree/master/ProductFarms): multiplication-tables a game, farm style
+* [iExpense](https://github.com/ihuettel/100Days/tree/master/iExpense): an app for tracking expenses
 * More to come...

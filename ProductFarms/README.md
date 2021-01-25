@@ -9,3 +9,5 @@ This project is designed to summarize and give an opportunity to dig back into a
 I'm still debating how far I want to go with this. I've imported some recommended open-source image files of some cute animals. Still not 100% sure how I want to implement it though.
 
 My schedule in life is also changing dramatically right now due to other **commit**ments, and I'm still navigating how to ensure 100 Days still has a place. I generally spent more than an hour a day on these, mostly because I enjoyed toying around with things, modifying them, breaking them, and (hopefully) fixing them. I'm probably going to be cutting that down to about an hour for my own sanity.
+
+# Status: In Progress
