@@ -18,9 +18,28 @@ class iExpenseTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testPersonalExpense() throws {
+        let item = ExpenseItem(name: "food", cost: 1000.00)
+        XCTAssertTrue(item.name == "food")
+        XCTAssertTrue(item.cost == 1000.00)
+        XCTAssertTrue(item.isForBusiness == false)
+    }
+    
+    func testBusinessExpense() throws {
+        let item = ExpenseItem(name: "plane ticket", cost: 450.99, isForBusiness: true)
+        XCTAssertTrue(item.name == "plane ticket")
+        XCTAssertTrue(item.cost == 450.99)
+        XCTAssertTrue(item.isForBusiness == true)
+    }
+    
+    func testMultipleExpenses() throws {
+        let expenses = Expenses()
+        for cost in 1 ... 3 {
+            let newItem = ExpenseItem(name: "Stuff", cost: Double(cost * 100), isForBusiness: cost % 2 == 0 ? true : false)
+            expenses.items.append(newItem)
+        }
+        XCTAssertTrue(expenses.items.count == 3)
+        XCTAssertTrue(expenses.items.first(where: {$0.isForBusiness == true} )?.cost == Double(200))
     }
 
     func testPerformanceExample() throws {

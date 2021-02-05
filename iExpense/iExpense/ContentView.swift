@@ -7,69 +7,38 @@
 
 import SwiftUI
 
-class User: ObservableObject {
-    @Published var firstName = "Banana"
-    @Published var lastName = "Sam"
+struct ExpenseItem {
+    var name: String
+    var cost: Double
+    var isForBusiness = false
 }
 
-struct nameChangeSheet: View {
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var person: User
-    
-    var body: some View {
-        TextField("First Name: ", text: $person.firstName)
-        TextField("Last Name: ", text: $person.lastName)
-        
-        Button("Dismiss") {
-            self.presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
-    init(for person: User) {
-        self.person = person
-    }
+class Expenses: ObservableObject {
+    @Published var items = [ExpenseItem]()
 }
 
 struct ContentView: View {
-    @ObservedObject private var person = User()
+    @ObservedObject var expenses = Expenses()
     
-    @State private var showNameSheet = false
-    
-    @State private var namesList = [String]()
-    
-    func removeRows(at offsets: IndexSet) {
-        namesList.remove(atOffsets: offsets)
+    func removeExpense(at offsets: IndexSet) {
+        expenses.items.remove(atOffsets: offsets)
     }
-    
+
     var body: some View {
         NavigationView {
-            Form {
-                Section {
-                        Text("Hello, \(person.firstName) \(person.lastName)!")
-                    .padding()
-                    
-                    Button("Change name") {
-                        showNameSheet = true
-                    }
+            List {
+                ForEach(expenses.items, id: \.name) { item in
+                    Text(item.name)
                 }
-                
-                Button("Save name") {
-                    namesList.append("\(person.firstName) \(person.lastName)")
-                }
-                
-                Section {
-                    List {
-                        ForEach(namesList, id: \.self) {
-                            Text($0)
-                        }
-                        .onDelete(perform: removeRows)
-                    }
-                }
+                .onDelete(perform: removeExpense)
             }
-            .navigationBarItems(leading: EditButton())
-            .sheet(isPresented: $showNameSheet) {
-                nameChangeSheet(for: person)
-            }
+            .navigationBarTitle("iExpense")
+            .navigationBarItems(trailing: Button(action: {
+                let expense = ExpenseItem(name: "Test", cost: 10)
+                self.expenses.items.append(expense)
+            }) {
+                Image(systemName: "plus")
+            })
         }
     }
 }
