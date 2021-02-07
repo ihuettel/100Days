@@ -21,8 +21,9 @@ struct AddView: View {
         NavigationView {
             Form {
                 TextField("Expense", text: $expenseName)
+                    .disableAutocorrection(true)
                 TextField("$0.00", text: $expenseCost)
-                    .keyboardType(.numbersAndPunctuation)
+                    .keyboardType(.decimalPad)
                 Picker("Type of Expense", selection: $expenseType) {
                     ForEach(Self.expenseTypes, id: \.self) {
                         Text($0)

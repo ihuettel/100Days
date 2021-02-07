@@ -19,7 +19,7 @@ import XCTest
 class iExpenseTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
 
     override func tearDownWithError() throws {
@@ -39,6 +39,7 @@ class iExpenseTests: XCTestCase {
         XCTAssertTrue(item.cost == 450.99)
         XCTAssertTrue(item.type == "Business")
     }
+    
 /*
  // This test is broken by saving user data. I'm sure I can rewrite it, or replace it with something more useful.
  // I might be able to use a stub here and load it with blank user data and then load actual user data.

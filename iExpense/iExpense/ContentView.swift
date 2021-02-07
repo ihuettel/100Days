@@ -50,7 +50,6 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(expenses.items) { item in
-                    //Text("\(item.name), $\(item.cost, specifier: "%.2f") - \(item.type)")
                     VStack(alignment: .trailing) {
                         HStack {
                             Text("\(item.name)")
@@ -65,7 +64,7 @@ struct ContentView: View {
                 .onDelete(perform: removeExpense)
             }
             .navigationBarTitle("iExpense")
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading: EditButton(), trailing:
                                     Button(action: {
                                         showingAddExpense = true
                                     }) {
