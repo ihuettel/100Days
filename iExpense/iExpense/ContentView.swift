@@ -7,6 +7,34 @@
 
 import SwiftUI
 
+struct colorCost: ViewModifier {
+    var cost: Double
+    var params: (dollarSigns: String, color: Color) {
+        if cost < 10.0 {
+            return ("$", .green)
+        } else if cost < 100.0 {
+            return ("$$", .orange)
+        } else {
+            return ("$$$", .red)
+        }
+    }
+    
+    func body(content: Content) -> some View {
+        HStack {
+            Text(params.dollarSigns)
+                .fontWeight(.bold)
+                .foregroundColor(params.color)
+            content
+        }
+    }
+}
+
+extension View {
+    func colorCodedText(for cost: Double) -> some View {
+        self.modifier(colorCost(cost: cost))
+    }
+}
+
 struct ExpenseItem: Identifiable, Codable {
     var id = UUID()
     var name: String
@@ -57,6 +85,7 @@ struct ContentView: View {
                                 .fontWeight(.semibold)
                             Spacer()
                             Text("$\(item.cost, specifier: "%.2f")")
+                                .colorCodedText(for: item.cost)
                         }
                         Text("\(item.type)")
                     }
