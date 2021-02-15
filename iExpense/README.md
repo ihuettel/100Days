@@ -10,7 +10,7 @@ This is also the first time encountering UserDefaults and JSON Encoding / Decodi
 
 Fun times!
 
-# Status: Finished
+# Status: Completed
 
 # Todo:
 * Expand testing coverage, including testing for UserDefaults
