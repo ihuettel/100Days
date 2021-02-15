@@ -10,4 +10,10 @@ This is also the first time encountering UserDefaults and JSON Encoding / Decodi
 
 Fun times!
 
-# Status: In Progress
+# Status: Finished
+
+# Todo:
+* Expand testing coverage, including testing for UserDefaults
+* Fix / Find workaround for Edit > Tap to Delete
+* Add UI Testing coverage
+* More comments
