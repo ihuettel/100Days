@@ -19,9 +19,15 @@ class Tests_iOS: XCTestCase {
     }
     
     func testBundleDecodeAstronauts() throws {
-        let bundle = Bundle(for: type(of: self)) // Load the proper bundle so we can find astronauts.json in shared resources
-        let astronauts: [Astronaut] = bundle.decode("astronauts.json") // Use decode extension on the bundle we found
+        let testBundle = Bundle(for: type(of: self)) // Load the test bundle so we can find astronauts.json in shared resources
+        let astronauts: [Astronaut] = testBundle.decode("astronauts.json") // Use decode extension on the bundle we found
         XCTAssertEqual(astronauts.count, 32, "Expected 32 astronauts, not \(astronauts.count)") // Make sure the extension worked
+    }
+    
+    func testBundleDecodeMissions() throws {
+        let testBundle = Bundle(for: type(of: self))
+        let missions: [Mission] = testBundle.decode("missions.json")
+        XCTAssertEqual(missions.count, 12, "Expected 12 Apollo missions, not \(missions.count)")
     }
 
     func testExample() throws {
