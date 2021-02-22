@@ -2,7 +2,7 @@
 //  Tests_iOS.swift
 //  Tests iOS
 //
-//  Created by homebase on 2/16/21.
+//  Created by Ian Huettel on 2/16/21.
 //
 
 import XCTest
@@ -20,6 +20,11 @@ class Tests_iOS: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+    
+    func testBundleDecodeAstronauts() throws {
+        let astronauts = Bundle.main.decode("astronauts.json")
+        XCTAssertEqual(astronauts.count, 32, "Expected 32 astronauts, not \(astronauts.count)")
     }
 
     func testExample() throws {

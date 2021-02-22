@@ -2,7 +2,7 @@
 //  MoonshotApp.swift
 //  Shared
 //
-//  Created by homebase on 2/16/21.
+//  Created by Ian Huettel on 2/16/21.
 //
 
 import SwiftUI
