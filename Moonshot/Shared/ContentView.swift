@@ -17,12 +17,12 @@ struct ContentView: View {
                 NavigationLink(destination: Text("Detail View")) {
                     Image(mission.imageName)
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
                         .frame(width: 44, height: 44)
                     VStack(alignment: .leading) {
                         Text(mission.displayName)
                             .font(.headline)
-                        Text("\(mission.launchDate ?? "N/A")")
+                        Text(mission.displayDate)
                             .font(.subheadline)
                     }
                 }
